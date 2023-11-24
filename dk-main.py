@@ -93,34 +93,38 @@ def pre_arm(vehicle):
         def whilearmed():
             return vehicle.arm
         vehicle.wait_for(whilearmed, 30)
-        vehicle._master.mav.command_long_send(
-                0,  # target_system
-                0,
-                mavlink.MAV_CMD_COMPONENT_ARM_DISARM, # command
-                0, # confirmation
-                0, # param1 (0 to indicate disarm)
-                0, # param2 (all other params meaningless)
-                0, # param3
-                0, # param4
-                0, # param5
-                0, # param6
-                0) # param7
+        # TODO: Force Disarm - Drone does not disarm?
+        #vehicle._master.mav.command_long_send(
+        #        0,  # target_system
+        #        0,
+        #        mavlink.MAV_CMD_COMPONENT_ARM_DISARM, # command
+        #        0, # confirmation
+        #        0, # param1 (0 to indicate disarm)
+        #        0, # param2 (all other params meaningless)
+        #        0, # param3
+        #        0, # param4
+        #        0, # param5
+        #        0, # param6
+        #        0) # param7
         print()
         print("Disarmed")
         print(vehicle.armed)
 
 
-print("Pre-flight...")
-pre_arm(veh)
-input('Preflight complete, take off (enter)')
-try:
-    print("Arming and taking off...")
-    arm_and_takeoff(veh, 20)
-    while True:
-        summarize_out(veh)
-except KeyboardInterrupt:
-    print("Exiting info!")
+def vehicle_loop(vehicle):
+    print("Pre-flight...")
+    pre_arm(vehicle)
+    input('Preflight complete, take off (enter)')
+    try:
+        print("Arming and taking off...")
+        arm_and_takeoff(vehicle, 20)
+        while True:
+            summarize_out(vehicle)
+    except KeyboardInterrupt:
+        print("Exiting info!")
 
+
+vehicle_loop(veh)
 
 # Close vehicle object before exiting script
 veh.close()

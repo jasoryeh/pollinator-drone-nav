@@ -1,3 +1,6 @@
+# Simple PyMavLink Proof of Concept
+# Connects and reads data from MavLink
+
 from pymavlink import mavutil
 import time
 
