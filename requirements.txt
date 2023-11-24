@@ -1,0 +1,2 @@
+dronekit @ git+https://github.com/jasoryeh/dronekit-python@master
+dronekit-sitl @ git+https://github.com/dronekit/dronekit-sitl@master
