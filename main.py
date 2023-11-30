@@ -16,19 +16,25 @@ import time, sys
 # Import DroneKit-Python
 from dronekit import connect, Vehicle, VehicleMode, LocationGlobalRelative, LocationGlobal
 
+_READY_ATTRIBUTES = ['gps_0', 'armed', 'mode', 'attitude'] # modified for MissionPlanner simulator
+
 # Connect to the Vehicle.
 print("Connecting to vehicle on: %s" % (connection_string,))
 def makeVehicle(handler):
     instance = Vehicle(handler)
     print("Created Vehicle instance")
-    instance._default_ready_attrs = ['gps_0', 'armed', 'mode', 'attitude']
+    instance._default_ready_attrs = _READY_ATTRIBUTES
     return instance
+
 veh = connect(connection_string, baud=4800, wait_ready=True, vehicle_class=makeVehicle)
 print("Connected.")
 
 LOG_PREVIOUSLINE = '\033[F'
-
 _summarize_out_msgs = []
+_summarize_out_time_between = 0.1
+'''
+Summarize the data of interest to output.
+'''
 def summarize_out(vehicle):
     global _summarize_out_msgs
     for i in range(len(_summarize_out_msgs)):
@@ -48,12 +54,12 @@ def summarize_out(vehicle):
     msg(" System status: {vehicle.system_status.state}")
     msg(" Mode: {vehicle.mode.name}")  # settable
     msg(f" Position: {str(vehicle.location.global_frame)}")  # lat lon alt
+
     for m in _summarize_out_msgs:
         print(str(m))
-    time.sleep(0.1)
+    time.sleep(_summarize_out_time_between)
 
 def arm_and_takeoff(vehicle, aTargetAltitude):
-
     print("Setting guided mode")
     vehicle.wait_for_mode("GUIDED", 30) # guided required for arming and flying
     print("Waiting for vehicle ready")
