@@ -140,6 +140,13 @@ class VehicleWrapper:
         #        0, # param6
         #        0) # param7
         print()
+
+    def routine_preflight(self):
+        if self.is_in_flight():
+            print("Resetting drone...")
+            self.routine_reset()
+            print("Reset!")
+        self.disarm()
     
 
     '''
