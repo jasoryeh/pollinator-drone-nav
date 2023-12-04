@@ -12,7 +12,9 @@ class VehicleWrapper:
     def __init__(self, vehicle: Vehicle):
         self.vehicle = vehicle
         self.timeout = WAIT_TIMEOUT
-    
+
+    def close(self):
+        pass
 
     '''
     Summarize the data of interest to output.
