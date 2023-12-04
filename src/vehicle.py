@@ -1,5 +1,5 @@
 from dronekit import Vehicle, LocationGlobalRelative
-import time
+import time, sys
 
 WAIT_TIMEOUT = 30
 
