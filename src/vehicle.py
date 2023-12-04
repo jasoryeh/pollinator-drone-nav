@@ -108,9 +108,9 @@ class VehicleWrapper:
             print("Can't disarm when already disarmed!")
             return
         print("Disarming")
-        self.vehicle.armed(False)
+        self.vehicle.armed = False
         def whilearmed():
-            return self.vehicle.armed()
+            return self.vehicle.armed
         self.vehicle.wait_for(whilearmed, timeout=self.timeout)
         print("Disarmed")
     
