@@ -13,13 +13,13 @@ class VehicleWrapper:
         self.vehicle = vehicle
         self.timeout = WAIT_TIMEOUT
 
-    def close(self):
+    def close(self) -> None:
         pass
 
     '''
     Summarize the data of interest to output.
     '''
-    def flash_info(self):
+    def flash_info(self) -> None:
         global _summarize_out_msgs
         for i in range(len(_summarize_out_msgs)):
             sys.stdout.write(LOG_PREVIOUSLINE)
