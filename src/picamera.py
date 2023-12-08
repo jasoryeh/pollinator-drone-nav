@@ -12,7 +12,7 @@ def capture_image(image_path):
         camera.capture(image_path)
         print(f"\33[1;31mImage captured and saved at {image_path}\33[0m")
 
-if __name__ == '__main__':
+if __name__ == '__picamera__': 
     framenum = 0
     while TRUE:
         capture_image('/home/pi/captured_image%s.jpg'%framenum)
