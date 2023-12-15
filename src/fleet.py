@@ -12,19 +12,7 @@ class Fleet:
             vehicle.takeoff(10)
 
     def tick(self) -> bool:
-        print("Pre-flight...")
-        veh = self._vehicles[0]
-        veh.routine_preflight()
-
-        input('Preflight complete, take off (enter)')
-        try:
-            print("Arming and taking off...")
-            veh.routine_takeoff(20)
-            while True:
-                veh.flash_info()
-        except KeyboardInterrupt:
-            print("Exiting info!")
-        return False
+        pass
 
     def run(self) -> None:
         while True:

@@ -45,9 +45,26 @@ async def main():
     fleet.fleet_add(wrapper)
     print("Connected.")
 
-    print("Running fleet!")
-    fleet.run()
-    print("Fleet closed.")
+    # start
+    print("Pre-flight...")
+    wrapper.routine_preflight()
+
+    input('Preflight complete, take off (enter)')
+    try:
+        print("Arming and taking off...")
+        wrapper.routine_takeoff(20)
+        while True:
+            wrapper.flash_info()
+    except KeyboardInterrupt:
+        print("Exiting info!")
+    return False
+    # end
+
+    run_fleet = False
+    if run_fleet:
+        print("Running fleet!")
+        fleet.run()
+        print("Fleet closed.")
 
     wrapper.close()
     if connection_details.sitl is not None:
