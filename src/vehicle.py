@@ -1,4 +1,5 @@
 from dronekit import Vehicle, LocationGlobalRelative
+from pymavlink import mavutil, mavlink
 import time, sys
 
 WAIT_TIMEOUT = 30
@@ -113,6 +114,14 @@ class VehicleWrapper:
             return self.vehicle.armed
         self.vehicle.wait_for(whilearmed, timeout=self.timeout)
         print("Disarmed")
+
+    def force_disarm(self):
+        if not self.vehicle.armed:
+            print("Can't force disarm when already disarmed!")
+            return
+        mavutil
+        self.vehicle.message_factory
+        self.vehicle.send_mavlink()
     
     '''
     Routine: Resets the drone to the ground if its armed/flying.
@@ -127,19 +136,20 @@ class VehicleWrapper:
         self.disarm()
         
         # TODO: Force Disarm - Drone does not disarm?
-        #vehicle._master.mav.command_long_send(
-        #        0,  # target_system
-        #        0,
-        #        mavlink.MAV_CMD_COMPONENT_ARM_DISARM, # command
-        #        0, # confirmation
-        #        0, # param1 (0 to indicate disarm)
-        #        21196, # param2 (21196=force) (all other params meaningless)
-        #        0, # param3
-        #        0, # param4
-        #        0, # param5
-        #        0, # param6
-        #        0) # param7
-        print()
+        print("Sending force disarm")
+        self.vehicle._master.mav.command_long_send(
+                0,  # target_system
+                0,
+                mavlink.MAV_CMD_COMPONENT_ARM_DISARM, # command
+                0, # confirmation
+                0, # param1 (0 to indicate disarm)
+                21196, # param2 (21196=force) (all other params meaningless)
+                0, # param3
+                0, # param4
+                0, # param5
+                0, # param6
+                0) # param7
+        print("Sent force disarm")
 
     def routine_preflight(self):
         if self.is_in_flight():
