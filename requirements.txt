@@ -1,2 +1,3 @@
 dronekit @ git+https://github.com/jasoryeh/dronekit-python@master
 dronekit-sitl @ git+https://github.com/dronekit/dronekit-sitl@master
+ultralytics>=8.0.228
