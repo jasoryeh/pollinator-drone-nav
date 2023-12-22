@@ -11,6 +11,11 @@ CAMERAID = 1
 # "yolov8n-seg.pt" # segmentation only (nano pretrained model)
 YOLO_MODEL = "yolov8x-seg.pt"
 
+# tuple (width, height), None for none
+#CAPTURE_LIMITS = (300, 200)
+CAPTURE_LIMITS = None
+
+
 oldprint = print
 def print(*args, **kwargs):
     if True:
@@ -44,7 +49,6 @@ def execute_model(model, frame):
 
 
 def run_model(q_tohere: multiprocessing.Queue, q_toparent: multiprocessing.Queue):
-    global _detections
     # Load a model
     print("Load model...")
     model = YOLO(YOLO_MODEL)
@@ -62,12 +66,13 @@ def run_cam(q_in: multiprocessing.Queue, q_out: multiprocessing.Queue):
 
     first = True
     detections = []
-    # cam capture
     capture = cv2.VideoCapture(CAMERAID)
-    #capture.set(cv2.CAP_PROP_FRAME_WIDTH, 300)
-    #capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 100)
+    if not (CAPTURE_LIMITS is None):
+        capture.set(cv2.CAP_PROP_FRAME_WIDTH, CAPTURE_LIMITS[0])
+        capture.set(cv2.CAP_PROP_FRAME_HEIGHT, CAPTURE_LIMITS[1])
+    
     while True:
-        ret, frame = capture.read()
+        _, frame = capture.read()
 
         if first:
             q_out.put(frame.copy())
