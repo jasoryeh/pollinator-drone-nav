@@ -35,6 +35,13 @@ device = "cpu"
 if len(args) > 2:
     device = args[2]
 
+if len(args) > 3:
+    try:
+        epochs = int(args[3])
+    except ValueError:
+        print(f"Unable tp print argument for epochs, got '{args[3]}'")
+        exit(1)
+
 # roboflow stuff
 rf = Roboflow(api_key=api_key)
 project = rf.workspace(roboflow_workspace).project(roboflow_project)
@@ -72,6 +79,6 @@ print("...training complete.")
 
 # upload trained model
 print("Uploading trained model:")
-version.deploy(dataset_format, os.path.join(dataset.location, "runs\\detect\\train"))
+version.deploy(dataset_format, os.path.join(dataset.location, "runs", "detect", "train"))
 
 # python roboflow-dl.py 14; cd flower_dataset-14; yolo task=detect mode=train model=yolov8s.pt data=$PWD/data.yaml epochs=100 plots=True device=0; cd ../; python roboflow-upload.py 14
