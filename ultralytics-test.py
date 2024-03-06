@@ -3,7 +3,7 @@ import cv2
 import multiprocessing
 
 # Configuration - Change this to make things work locally
-CAMERAID = 1
+CAMERAID = 2
 
 # "yolov8x-cls.pt" # classification only - xl sized
 # "yolov8x.pt" # detect only - xl
