@@ -1,5 +1,5 @@
 from dronekit import Vehicle, LocationGlobalRelative
-from pymavlink import mavutil, mavlink
+#from pymavlink import mavutil, mavlink
 import time, sys
 
 WAIT_TIMEOUT = 30
@@ -136,7 +136,7 @@ class VehicleWrapper:
         self.disarm()
         
         # TODO: Force Disarm - Drone does not disarm?
-        print("Sending force disarm")
+        '''print("Sending force disarm")
         self.vehicle._master.mav.command_long_send(
                 0,  # target_system
                 0,
@@ -149,7 +149,7 @@ class VehicleWrapper:
                 0, # param5
                 0, # param6
                 0) # param7
-        print("Sent force disarm")
+        print("Sent force disarm")'''
 
     def routine_preflight(self):
         if self.is_in_flight():
@@ -168,9 +168,14 @@ class VehicleWrapper:
             return
         
         print("Takeoff!")
+        print("Setting guided mode...")
         self.guided()
+        print("Waiting for arm...")
         self.wait_arm()
         self.arm()
+        print("Armed. Taking off")
 
         self.takeoff(targetAlt=targetAlt)
+        print(f"Take off. Waiting to altitude: {targetAlt}")
         self.wait_altitude(targetAlt=targetAlt)
+        print(f"Reached altitude: {targetAlt}")
