@@ -5,9 +5,7 @@ venv
 
 # Ignore yolov8 models
 yolov8*
-
 .env
-
 config.py
-
 flower_dataset-*
+*.pt
