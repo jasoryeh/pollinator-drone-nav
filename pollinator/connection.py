@@ -9,6 +9,8 @@ class ConnectionManager:
         print("Start simulator (SITL)...")
         self.sitl = dronekit_sitl.start_default()
         self.connection_string = self.sitl.connection_string()
+        #print("Waiting for SITL ready...")
+        #self.sitl.block_until_ready(verbose=True)
         print("Simulator started.")
 
     def to(self, to) -> None:

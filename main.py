@@ -14,7 +14,7 @@ def get_connection() -> connection_handler.ConnectionManager:
         print("Start simulator (SITL)")
         connection.start_sim()
     else:
-        connection.to("udpin:10.1.2.3:14550")
+        connection.to("tcpin:10.1.2.3:14550")
     return connection
 
 

@@ -31,7 +31,7 @@ class Camera:
             raise RuntimeError("No camera initiated! Run Camera.start_capture() first!")
 
         _, self.frame = self.video_capture.read()
-        while not self.frame:
+        while self.frame is None:
             print("Retrying capture, no initial frame was found from capture.")
             _, self.frame = self.video_capture.read()
         self.frame = self.frame.copy()

@@ -9,3 +9,4 @@ yolov8*
 config.py
 flower_dataset-*
 *.pt
+temp/

@@ -1,4 +1,4 @@
-from src.vehicle import VehicleWrapper
+from pollinator.vehicle import VehicleWrapper
 
 class Fleet:
     def __init__(self):
