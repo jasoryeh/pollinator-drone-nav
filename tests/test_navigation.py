@@ -91,6 +91,14 @@ class TestNavigation(unittest.TestCase):
         self.assertEqual(horiz, 500 - (34 + ((234 - 34) / 2)))
         self.assertEqual(vert, 500 - (20 + ((300 - 20) / 2)))
 
+'''
+# Show assertEqual comparisons for data for documentation
+ae = unittest.TestCase.assertEqual
+def b(a, b, c):
+    print(f"\naaa: {b} - {c}")
+    ae(a, b, c)
+unittest.TestCase.assertEqual = b
+'''
 
 if __name__ == '__main__':
     unittest.main()
