@@ -12,4 +12,4 @@ change the IP address and port to one where your Mission Planner is mirroring/pr
 the MavLink connection.
 
 # Model Data
-Available on Roboflow: https://universe.roboflow.com/drone-dbsja/flower_dataset_flower_only_class
+Available on Roboflow: https://universe.roboflow.com/drone-dbsja/flower_dataset-podcd
