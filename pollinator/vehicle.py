@@ -55,7 +55,7 @@ class VehicleWrapper:
         return (not self.vehicle.armed) and (self.vehicle.location.global_relative_frame.alt <= 1)
     
     def is_in_flight(self):
-        return self.vehicle.armed and (self.vehicle.location.global_relative_frame.alt > 1);
+        return self.vehicle.armed and (self.vehicle.location.global_relative_frame.alt > 1)
 
     def land(self):
         if not self.vehicle.armed:
@@ -119,7 +119,6 @@ class VehicleWrapper:
         if not self.vehicle.armed:
             print("Can't force disarm when already disarmed!")
             return
-        mavutil
         self.vehicle.message_factory
         self.vehicle.send_mavlink()
     
