@@ -3,10 +3,17 @@ import asyncio
 # Import DroneKit-Python
 from dronekit import connect, Vehicle
 # Import our classes
-import src.connection as connection_handler
-import src.vehicle as vehicle_handler
-import src.fleet as fleet_handler
+ 
+import pollinator.connection as connection_handler
+import pollinator.vehicle as vehicle_handler
+import pollinator.fleet as fleet_handler
+import sys
 
+from interface.ctrlpanel import start_server
+
+start_server()
+
+sys.path.append()
 RUN_SIMULATOR = False
 def get_connection() -> connection_handler.ConnectionManager:
     connection = connection_handler.ConnectionManager()
