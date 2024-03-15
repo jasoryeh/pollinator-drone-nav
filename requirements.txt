@@ -1,4 +1,5 @@
 dronekit @ git+https://github.com/jasoryeh/dronekit-python@master
 dronekit-sitl @ git+https://github.com/dronekit/dronekit-sitl@master
 ultralytics>=8.0.228
-RPi.GPIO == 0.7.1
+#RPi.GPIO == 0.7.1
+opencv-python >= 4.8.1
